@@ -1,0 +1,27 @@
+{
+  "name": "addresscloud",
+  "version": "1.0.0",
+  "description": "NPM module to allow developers to access the addressCloud location API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j4jefferson/addresscloud.git"
+  },
+  "keywords": [
+    "addresscloud",
+    "postcode",
+    "address",
+    "buildings",
+    "location",
+    "api"
+  ],
+  "author": "James Jefferson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j4jefferson/addresscloud/issues"
+  },
+  "homepage": "https://github.com/j4jefferson/addresscloud#readme"
+}

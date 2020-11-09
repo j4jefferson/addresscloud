@@ -4,7 +4,7 @@
   "description": "NPM module to allow developers to access the addressCloud location API",
   "main": "index.js",
   "scripts": {
-    "test": "test.js"
+    "start": "index.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/j4jefferson/addresscloud/issues"
   },
-  "homepage": "https://github.com/j4jefferson/addresscloud#readme"
+  "homepage": "https://github.com/j4jefferson/addresscloud#readme",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
 }

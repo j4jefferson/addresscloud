@@ -14,7 +14,7 @@ To configure the module simply require the module in your script and pass it a c
 For example, include (require) the module in your index.js like so:
 
 ```
-const addresscloud = require('@j4jefferson/addresscloud')
+const Addresscloud = require('@j4jefferson/addresscloud')
 /**
  * Initiate a new addresscloud obj with your api key and client details
  */

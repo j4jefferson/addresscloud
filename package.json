@@ -1,30 +1,37 @@
 {
-  "name": "@j4jefferson/addresscloud",
-  "version": "1.0.1",
-  "description": "NPM module to allow developers to access the addressCloud location API",
-  "main": "index.js",
-  "scripts": {
-    "start": "index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/j4jefferson/addresscloud.git"
-  },
-  "keywords": [
-    "addresscloud",
-    "postcode",
-    "address",
-    "buildings",
-    "location",
-    "api"
-  ],
-  "author": "James Jefferson",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/j4jefferson/addresscloud/issues"
-  },
-  "homepage": "https://github.com/j4jefferson/addresscloud#readme",
-  "dependencies": {
-    "axios": "^0.21.0"
-  }
+	"name": "@j4jefferson/addresscloud",
+	"version": "1.0.1",
+	"description": "NPM module to allow developers to access the addressCloud location API",
+	"main": "index.js",
+	"scripts": {
+		"start": "index.js",
+		"test": "jest --verbose ./__tests__",
+    "coverage": "jest --coverage && coveralls < coverage/lcov.info"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/j4jefferson/addresscloud.git"
+	},
+	"keywords": [
+		"addresscloud",
+		"postcode",
+		"address",
+		"buildings",
+		"location",
+		"api"
+	],
+	"author": "James Jefferson",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/j4jefferson/addresscloud/issues"
+	},
+	"homepage": "https://github.com/j4jefferson/addresscloud#readme",
+	"dependencies": {
+		"axios": "^0.27.2"
+	},
+	"devDependencies": {
+		"coveralls": "^3.1.1",
+		"dotenv": "^16.0.2",
+		"jest": "^29.0.2"
+	}
 }

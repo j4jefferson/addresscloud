@@ -49,7 +49,7 @@ class Addresscloud {
    * Match API Request
    */
   async match(options) {
-    const {endpoint, search} = options
+    const {endpoint, search, intel=false} = options
     this.setBaseURL("https://api.addresscloud.com/match/v1")
 
     // check the request being made is allowed by the API
@@ -67,6 +67,11 @@ class Addresscloud {
     let fetchSearchString = endpoint_fragments[1] === 'lookup' 
       ? `${this.__base_url}/${endpoint}/${search}`
       : `${this.__base_url}/${endpoint}?query=${search}`
+
+    // retrieve intel in same request
+	if(intel) {
+		fetchSearchString += '?intel=true'
+	}
 
     // execute the request
     try {

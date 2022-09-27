@@ -1,6 +1,6 @@
 {
   "name": "@j4jefferson/addresscloud",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NPM module to allow developers to access the addressCloud location API",
   "main": "index.js",
   "scripts": {

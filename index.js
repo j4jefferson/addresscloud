@@ -70,7 +70,7 @@ class Addresscloud {
 
     // retrieve intel in same request
 	if(intel) {
-		fetchSearchString += '?intel=true'
+	  fetchSearchString += '?intel=true'
 	}
 
     // execute the request

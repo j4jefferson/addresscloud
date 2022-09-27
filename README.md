@@ -63,6 +63,8 @@ const postcodeLookup = myAddresscloud.match({
 })
 ```
 
+If you have an intel package Addresscloud will allow you to retrieve all the intel with a specific property. You may add an optional third parameter to the match options object: 'intel' which is a boolean (default false). Obviously, you must have intel privileges set up with Addresscloud for this to bring any data.
+
 ## Lookup by id
 
 Once a postcode search has returned results, you can then use the unique id to search details on a single property. The example below shows how to retrieve the details of a given address by id. The results include a uprn (unique property reference number) which can then be used to query the intel API.
@@ -71,58 +73,38 @@ Once a postcode search has returned results, you can then use the unique id to s
 /**
  * Get details about a given address
  */
-const addressLookup = myAddresscloud.match({
-	endpoint: 'address/lookup/byId',
-	search: '8e195822c5a8217:j3TUC5',
-})
+async function getAddress() {
+ 	const { data } = await myAddresscloud.match({
+		endpoint: 'address/lookup/byId',
+		search: '8e195822c5a8217:j3TUC5',
+	})
 
-//retrieve the address lookup promise
-const addressResult = addressLookup.then(response => {
-  if (!response.status === 200) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  } else {
-    return response;
-  }
-})
+	return data
+}
 ```
 
 ## Query the intel API
 
-Using a uprn code use the following code to get intel data for a given property. Of course you may also lookup the intel data by id or point data (as per the documentation)
+Using a uprn code use the following code to get intel data for a given property. Of course you may also lookup the intel data by id or point data (as per the documentation). Additionally you may use the query string on the match api as described above to automatically get intel data with the address lookup - saving you the extra call (nice work AC!).
 
 ```
 /**
  * Get details about a given address
  */
-const addressLookup = myAddresscloud.match({
-	endpoint: 'address/lookup/byId',
-	search: '8e195822c5a8217:j3TUC5',
-})
-
-//retrieve the address lookup promise
-const addressResult = addressLookup.then(response => {
-  if (!response.status === 200) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  } else {
-    return response;
-  }
-})
+async function getAddress() {
+	const { data } = await myAddresscloud.match({
+		endpoint: 'address/lookup/byId',
+		search: '8e195822c5a8217:j3TUC5',
+	})
+	return data
+}
 
 // Store data to do an additional search
 // UPRN is a unique identifier for a property and can be
 // used to do a more in depth detail search with the intel API
-const propertyIdentifier = (obj, entry) => {
-	console.log(`The property identifier is ${obj[entry]}`)
-	return obj[entry]
-}
 
-// Store only the unique ref, but you can store the whole shebang if you need to
-const addressID = addressResult.then(res => {
-	const addressObj = res.data.result
-	return propertyIdentifier(addressObj.properties, 'uprn')
-}).catch(err => {
-	console.log('I got an error: '+err)
-})
+const addressData = getAddress()
+const uprn = addressData.properties['uprn']
 ```
 
 ## Retrieve intel data
@@ -130,22 +112,18 @@ const addressID = addressResult.then(res => {
 The example below takes the uprn code stored previously and looks up all available intel data from the intel API using the byUPRN endpoint
 
 ```
-const intel = addressDetails.then(res => {
-	return myAddresscloud.intel({
+/**
+ * 
+ */
+async function getIntel(uprn) {
+	const { data } = await myAddresscloud.intel({
 		target: 'address',
 		lookup: 'byUPRN',
-		search: res
+		search: uprn
 	})
-}).catch(err => {
-	console.log(err)
-})
+	return data
+}
 
-//print out the response to the console to see what we got
-const intelRes = intel.then(response => {
-	console.log(JSON.stringify(response.data, null, 4))
-}).catch(err => {
-	console.log(err)
-})
 ```
 
 For more information on the API visit the [Addresscloud docs](https://docs.addresscloud.com/)
